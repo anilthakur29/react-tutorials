@@ -1,33 +1,40 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-class Inc extends React.Component{
-	constructor(props){
-		super(props);
-		this.state= {
-			counter:0
-		}
-		
-	}
-	increment =(e) =>{
-		e.preventDefault();
-
-		this.setState({
-			counter:this.state.counter + 1
-		});
-	}
-
-	render(){
-		return <button href='http://google.com' onClick={this.increment}>value is:{this.state.counter}</button>
+function Message(props){
+	if(props.value){
+		return <h1>First Message</h1>
 
 	}
-
-
-
-
+	return <h1>Second Message</h1>
 
 }
+class Btn extends React.Component{
+	constructor(props) {
+		super(props)
+	
+		this.state = {
+			value : true
+			 
+		}
+	}
 
+	handleClick =() =>{
+		this.setState({
+			value :!this.state.value
+
+		});
+	}
+render(){
+	return <div>
+		<button onClick={this.handleClick}>Click Here</button>
+		<Message value={this.state.value}/>
+
+		
+
+	</div>	
+}	
+}
 ReactDOM.render(
-	<Inc />,document.getElementById('root')
+	<Btn />,document.getElementById('root')
 )
